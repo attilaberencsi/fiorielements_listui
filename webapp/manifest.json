@@ -61,7 +61,8 @@
             "minUI5Version": "1.76.0",
             "libs": {
                 "sap.ui.core": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "models": {
@@ -85,12 +86,17 @@
                 {
                     "pattern": ":?query:",
                     "name": "TravelList",
-                    "target": "TravelList"
+                    "target": [
+                        "TravelList"
+                    ]
                 },
                 {
                     "pattern": "Travel({key}):?query:",
                     "name": "TravelObjectPage",
-                    "target": "TravelObjectPage"
+                    "target": [
+                        "TravelList",
+                        "TravelObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -108,9 +114,20 @@
                                         "route": "TravelObjectPage"
                                     }
                                 }
+                            },
+                            "initialLoad": "Enabled",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "selectionMode": "Single",
+                                        "type": "ResponsiveTable"
+                                    }
+                                }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "TravelObjectPage": {
                     "type": "Component",
@@ -118,15 +135,31 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Travel"
+                            "entitySet": "Travel",
+                            "editableHeaderContent": false
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Travel({key})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
         },
         "contentDensities": {
             "compact": true,
             "cozy": true
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.platform.abap": {
