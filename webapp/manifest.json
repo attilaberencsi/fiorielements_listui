@@ -136,7 +136,22 @@
                     "options": {
                         "settings": {
                             "entitySet": "Travel",
-                            "editableHeaderContent": false
+                            "editableHeaderContent": false,
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "itinerary": {
+                                            "name": "customer.travel.travellist.ext.fragment.GeoMap",
+                                            "position": {
+                                                "anchor": "Booking",
+                                                "placement": "After"
+                                            },
+                                            "type": "XMLFragment",
+                                            "title": "Itinerary"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "controlAggregation": "midColumnPages",
